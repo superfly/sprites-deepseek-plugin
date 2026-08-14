@@ -1,0 +1,29 @@
+name: Feature request
+description: Propose an improvement to the plugin's DeepSeek Harness and Sprites workflow.
+title: "feature: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or use case
+      description: Describe the workflow gap and who encounters it.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Explain the desired user-visible result without assuming a specific implementation.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: textarea
+    id: contract
+    attributes:
+      label: Harness, Cordis, or Sprites contract considerations
+      description: Link relevant public documentation for any required package, patch, tool, schema, OAuth, or plugin behavior.

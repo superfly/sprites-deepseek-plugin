@@ -1,0 +1,38 @@
+{
+  "name": "dsh-sprites-plugin",
+  "version": "0.1.0",
+  "description": "Sprites remote development environments for DeepSeek Harness through Cordis and MCP.",
+  "type": "module",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "cordis.patch.yml",
+    "skills"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh-plugin",
+    "cordis",
+    "sprites",
+    "mcp",
+    "development-environments"
+  ],
+  "homepage": "https://sprites.dev",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/superfly/sprites-deepseek-plugin.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "dependencies": {
+    "@deepseek-ai/dsh-mcp-client": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-skill-filesystem": "^0.1.0-rc.6"
+  }
+}

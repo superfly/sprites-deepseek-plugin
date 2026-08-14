@@ -1,0 +1,11 @@
+.DS_Store
+.claude/
+.pytest_cache/
+.ruff_cache/
+.venv/
+__pycache__/
+*.pyc
+node_modules/
+dist/
+tmp/
+*.log

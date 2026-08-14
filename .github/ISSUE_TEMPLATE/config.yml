@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Sprites documentation
+    url: https://docs.sprites.dev/
+    about: Read the Sprites product and Remote MCP documentation.
+  - name: Fly.io community
+    url: https://community.fly.io/
+    about: Ask general Sprites and Fly.io usage questions.
+  - name: Security report
+    url: https://fly.io/docs/security/#talk-to-the-security-team
+    about: Report vulnerabilities privately; do not open a public issue.

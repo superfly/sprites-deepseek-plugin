@@ -1,0 +1,29 @@
+- insert:
+    - id: sprites-mcp
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        transport: stdio
+        serverName: sprites
+        command: npx
+        args:
+          - -y
+          - mcp-remote@0.1.38
+          - https://sprites.dev/mcp
+          - --transport
+          - http-only
+          # mcp-remote includes the URL and headers in its OAuth cache key.
+          # Changing either attribution header signs existing users out.
+          - --header
+          - Fly-Client-Interactive:false
+          - --header
+          - Fly-Client-Agent:deepseek-harness
+        env: {}
+        toolCallTimeoutMs: 300000
+        failOnStartupError: false
+        reconnect:
+          enabled: true
+          initialDelayMs: 500
+          maxDelayMs: 30000
+          maxAttempts: 10
+    - id: sprites-skill-filesystem
+      name: dsh-sprites-plugin

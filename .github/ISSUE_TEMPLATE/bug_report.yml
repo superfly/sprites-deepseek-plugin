@@ -1,0 +1,61 @@
+name: Bug report
+description: Report a reproducible problem with the Sprites plugin for DeepSeek Harness.
+title: "bug: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve the plugin. Do not include credentials, OAuth caches, tokens, cookies, private data, or production logs. Report vulnerabilities through the private security link instead.
+  - type: input
+    id: plugin-version
+    attributes:
+      label: Plugin version
+      description: The version from `package.json` or the Git tag.
+      placeholder: 0.1.0
+    validations:
+      required: true
+  - type: input
+    id: harness-version
+    attributes:
+      label: DeepSeek Harness version
+      description: The installed `@deepseek-ai/dsh` version.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Operating system, Node.js version, and Harness profile or interface.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      description: Provide the smallest reliable sequence, with sensitive values redacted.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Include only bounded, redacted output.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Safety checks
+      options:
+        - label: I removed credentials, OAuth caches, tokens, cookies, private data, and production logs.
+          required: true
+        - label: This is not a security vulnerability.
+          required: true
