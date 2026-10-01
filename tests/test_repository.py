@@ -50,11 +50,15 @@ class DeepSeekPluginRepositoryTests(unittest.TestCase):
         self.assertIn("dsh-plugin", self.manifest["keywords"])
         self.assertEqual(self.manifest["main"], "index.js")
         self.assertEqual(self.manifest["engines"]["node"], ">=20.19.0")
+
+    def test_manifest_declares_harness_plugins_as_direct_dependencies(self) -> None:
+        # Dependency versions are maintained by Dependabot; enforce the package
+        # contract here and check compatibility with check_skill_entry.mjs in CI.
         self.assertEqual(
-            self.manifest["dependencies"],
+            set(self.manifest["dependencies"]),
             {
-                "@deepseek-ai/dsh-mcp-client": "^0.1.0-rc.6",
-                "@deepseek-ai/dsh-skill-filesystem": "^0.1.0-rc.6",
+                "@deepseek-ai/dsh-mcp-client",
+                "@deepseek-ai/dsh-skill-filesystem",
             },
         )
 
