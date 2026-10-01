@@ -32,7 +32,7 @@
     "node": ">=20.19.0"
   },
   "dependencies": {
-    "@deepseek-ai/dsh-mcp-client": "^0.1.0-rc.6",
-    "@deepseek-ai/dsh-skill-filesystem": "^0.1.0-rc.6"
+    "@deepseek-ai/dsh-mcp-client": "^0.2.0-rc.1",
+    "@deepseek-ai/dsh-skill-filesystem": "^0.2.0-rc.1"
   }
 }
