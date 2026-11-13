@@ -8,7 +8,7 @@ Use [Sprites](https://sprites.dev) from [DeepSeek Harness](https://deepseek.com/
 
 This repository is a Harness bundle. Its `cordis.patch.yml` mounts:
 
-- `@deepseek-ai/dsh-mcp-client`, connected to the hosted Sprites MCP server.
+- `@deepseek-ai/dsh-mcp-client`, connected to the hosted Fly MCP server at `https://mcp.fly.io`, which serves the Sprites tools.
 - This package's `index.js` entry, which mounts `@deepseek-ai/dsh-skill-filesystem` against the packaged Sprites workflow skill.
 
 The result is a native Cordis composition: Sprites tools appear as `mcp__sprites__*`, and the Sprites skill is discoverable through Harness's normal skill system.
@@ -17,7 +17,7 @@ The result is a native Cordis composition: Sprites tools appear as `mcp__sprites
 
 - Node.js 20.19 or newer. The packaged filesystem provider currently depends on Chokidar 5, whose engine floor is Node 20.19.
 - DeepSeek Harness developer preview.
-- Browser access for the first Sprites OAuth authorization.
+- Browser access for the first Fly.io OAuth authorization.
 - Network access for `npx` to run the pinned `mcp-remote@0.1.38` OAuth bridge.
 
 Harness's current Streamable HTTP MCP transport accepts static headers but does not perform MCP OAuth. This bundle therefore uses Harness's supported stdio transport and `mcp-remote` to complete the standard browser OAuth flow without requiring a Sprites API token.
@@ -36,7 +36,7 @@ Then start that profile:
 npx @deepseek-ai/dsh --profile web
 ```
 
-On first connection, complete the browser OAuth flow, choose the Fly.io organization, and review the connector access policy. Restart Harness once if the initial tool synchronization timed out while you were authorizing.
+On first connection, complete the browser OAuth flow, choose the Fly.io organization, and review the access you are granting. Restart Harness once if the initial tool synchronization timed out while you were authorizing.
 
 For local development from this repository:
 
@@ -70,9 +70,11 @@ An empty sprite list is a successful authenticated response.
 
 ## Authentication and access
 
-The hosted endpoint is `https://sprites.dev/mcp` and uses OAuth 2.1. `mcp-remote` stores its OAuth state in its normal local credential directory; this repository contains no credentials.
+The hosted endpoint is the Fly MCP server at `https://mcp.fly.io` and uses OAuth 2.1. `mcp-remote` stores its OAuth state in its normal local credential directory; this repository contains no credentials.
 
-The Sprites consent screen normally creates a restricted connector token. Its default name prefix is often `mcp-`, and it may cap how many sprites the connector can create. A custom non-empty prefix remains restricted. Choosing **Full access** removes the prefix restriction but grants access to every sprite in the organization.
+Upgrading from a release that connected to `https://sprites.dev/mcp`: the two endpoints have separate OAuth grants, so you must complete the browser authorization once more after updating. Tool names are unchanged.
+
+The Fly.io consent screen covers Sprites and, if you select them, other Fly.io resources such as existing apps; any tools you grant beyond Sprites also appear under `mcp__sprites__`. Authorize only what you need. The Sprites permissions normally create a restricted connector token. Its default name prefix is often `mcp-`, and it may cap how many sprites the connector can create. A custom non-empty prefix remains restricted. Choosing **Full access** removes the prefix restriction but grants access to every sprite in the organization.
 
 Prefer restricted access for agent work. If a create call reports a required prefix, Harness should retry once with that exact prefix and report the actual name.
 
@@ -92,7 +94,7 @@ The MCP subprocess also sends fixed, privacy-safe client attribution headers:
 
 No user-, machine-, repository-, or session-specific attribution is sent. The headers are advisory analytics only and are not used for authorization or rate limiting.
 
-`mcp-remote` includes both the server URL and serialized headers in its OAuth cache key. Changing either attribution header therefore invalidates existing cached authorization and requires users to authenticate again.
+`mcp-remote` includes both the server URL and serialized headers in its OAuth cache key. Changing the URL or either attribution header therefore invalidates existing cached authorization and requires users to authenticate again.
 
 ## Safety
 
@@ -149,6 +151,7 @@ node scripts/check_skill_entry.mjs
 
 - [DeepSeek Harness plugin development](https://deepseek-harness.github.io/deepseek-harness/en/develop/basic/)
 - [DeepSeek Harness package and install guide](https://deepseek-harness.github.io/deepseek-harness/en/develop/basic/publish)
+- [Fly MCP guide](https://mcp.fly.io/guide.md)
 - [Sprites remote MCP documentation](https://docs.sprites.dev/integrations/remote-mcp/)
 - [Sprites MCP server repository](https://github.com/superfly/sprites-mcp)
 - [`mcp-remote`](https://github.com/geelen/mcp-remote)
