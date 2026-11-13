@@ -1,6 +1,6 @@
 {
   "name": "dsh-sprites-plugin",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Sprites remote development environments for DeepSeek Harness through Cordis and MCP.",
   "type": "module",
   "main": "index.js",
