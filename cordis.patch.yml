@@ -8,11 +8,11 @@
         args:
           - -y
           - mcp-remote@0.1.38
-          - https://sprites.dev/mcp
+          - https://mcp.fly.io
           - --transport
           - http-only
           # mcp-remote includes the URL and headers in its OAuth cache key.
-          # Changing either attribution header signs existing users out.
+          # Changing the URL or either attribution header signs existing users out.
           - --header
           - Fly-Client-Interactive:false
           - --header

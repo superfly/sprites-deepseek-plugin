@@ -36,7 +36,7 @@ node scripts/check_skill_entry.mjs
 
 Changes to the Cordis patch, package entry, MCP transport, OAuth headers, dependency versions, tool names, or skill root must include a regression test. Keep `@deepseek-ai/dsh-mcp-client` and `@deepseek-ai/dsh-skill-filesystem` declared directly rather than relying on Harness's transitive dependencies.
 
-The `mcp-remote` OAuth cache key includes the server URL and serialized headers. Changing either attribution header signs existing users out and must be called out in the changelog and pull request.
+The `mcp-remote` OAuth cache key includes the server URL and serialized headers. Changing the URL or either attribution header signs existing users out and must be called out in the changelog and pull request.
 
 Do not commit tokens, OAuth credential caches, browser cookies, logs containing secrets, or generated test data. End-to-end tests must use a restricted connector and non-production data.
 

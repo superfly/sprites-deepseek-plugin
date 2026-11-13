@@ -82,7 +82,7 @@ class DeepSeekPluginRepositoryTests(unittest.TestCase):
         self.assertEqual(config["transport"], "stdio")
         self.assertEqual(config["serverName"], "sprites")
         self.assertEqual(config["command"], "npx")
-        self.assertEqual(config["args"][:3], ["-y", "mcp-remote@0.1.38", "https://sprites.dev/mcp"])
+        self.assertEqual(config["args"][:3], ["-y", "mcp-remote@0.1.38", "https://mcp.fly.io"])
         self.assertIn("http-only", config["args"])
         self.assertGreaterEqual(config["toolCallTimeoutMs"], 60_000)
 

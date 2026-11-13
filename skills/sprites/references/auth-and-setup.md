@@ -1,14 +1,16 @@
 # Authentication and setup
 
-This bundle connects only to `https://sprites.dev/mcp`. Because DeepSeek Harness's current native HTTP MCP transport does not perform OAuth, the Cordis layer starts the pinned `mcp-remote` bridge over stdio. That bridge owns browser OAuth and local token storage.
+This bundle connects only to the hosted Fly MCP server at `https://mcp.fly.io`, which serves the Sprites tools. Because DeepSeek Harness's current native HTTP MCP transport does not perform OAuth, the Cordis layer starts the pinned `mcp-remote` bridge over stdio. That bridge owns browser OAuth and local token storage.
 
 ## Healthy first run
 
 1. The `sprites-mcp` Cordis row starts.
 2. `mcp-remote` opens or prints a browser authorization URL.
-3. The user signs in with Fly.io, chooses an organization, and selects connector access.
+3. The user signs in with Fly.io, chooses an organization, and selects the Sprites access to grant.
 4. Harness discovers `mcp__sprites__*` tools.
 5. `list_sprites` returns data or an empty list. Both mean authentication succeeded.
+
+A user who authorized an earlier release against `https://sprites.dev/mcp` is asked to authorize again once; the two endpoints have separate OAuth grants.
 
 If the first tool synchronization times out while the user is authorizing, let the user finish OAuth and restart Harness. The stored OAuth session should be reused.
 
